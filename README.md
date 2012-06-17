@@ -146,3 +146,8 @@ Notice that Marker 1 has content and Marker 2 doesn't, still, the latter will ha
 Since it traverse the XML DOM node tree recursively, it doesn't matter how deep and complex your structure is.
 
 As an example, this class is very usefull with another script which extends Google Maps Api classes, so a really fast setup can be done since a map, markers and else, can be written in a XML file, then converted to Object, and build the map in a more automatic way.
+
+Future incoming
+---------------
+
+Due to improve this plugin, and comments from Geoff Hayward, I'm considering implement this iterative instead of recursive.
