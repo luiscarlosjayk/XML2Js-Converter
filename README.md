@@ -5,27 +5,76 @@ Request a XML file then traverse it recursively to build an Object.
 
 How to use
 ----------
+
+	You first need to create an instance of XML2Object which can be used as many times as needed
+	to convert several files and/or xml strings.
 	
-	The XML2Object request a XML file which is the only argument it receives.
-	On it's 'complete' event, it pass an obejct containing the text, xml and xmlObj of the response from the request made.
+	var xml2json = new XML2Object();
 	
-	Response object structure:
-	{ xmlObj, text, xml }
+	Once you have an instance of XML2Object, you can do convertions using two public methods,
+	convertFromUrl and convertFromString.
 	
-	new XML2Object("map.xml").addEvent('complete', function(result) {
+	ConvertFromUrl:
+		Syntax:
+		xml2json.convertFromUrl(xmlurl, fn[, options[, id]]);
 		
-		console.log("Our beloved resulting object got from the xml is:");
-		console.log(result.xmlObj);
+		Arguments:
+		xmlurl	- (string) Url location of xml file to convert.
+		fn		- (function) The function to run on Success.
+		options - (object, optional) Options to merge with request options.
+		id		- (string, optional) Convertion id to store convertion results for further retrieval. Likely a caching.
 		
-		console.log("The response plain text is:");
-		console.log(result.text);
+		Argument:fn
 		
-		console.log("The xml response is:");
-		console.log(result.xml);
+			Syntax:
+			fn(resulting_object)
 		
-	});
+		Example:
+		xml2json.convertFromURL('test.xml', function(response) {
+			console.log(xml);
+		});
 	
-	If you need to convert several files, you can use it's getRequest method, which is the one that makes the request.
+	ConvertFromString:
+		
+		Syntax:
+		xml2json.convertFromString(xmlstring[, id]);
+		
+		Arguments:
+		xmlstring	- (string) XML string to convert.
+		id			- (string, optional) Convertion id to store convertion results for furter retrieval. Likely a chaching.
+		
+		Example:
+		var xmlstring="<bookstore><book>";
+			xmlstring=xmlstring+"<title>Everyday Italian</title>";
+			xmlstring=xmlstring+"<author>Giada De Laurentiis</author>";
+			xmlstring=xmlstring+"<year>2005</year>";
+			xmlstring=xmlstring+"</book></bookstore>";
+			
+		console.log( xml2json.convertFromString(xmlstring) );
+
+	
+	Retrieve:
+	
+		Syntax:
+		var result = xml2json.retrieve(id);
+		
+		Arguments:
+		id - (string) Stored convertion id passed on convertFromUrl or convertFromString methods.
+		
+		Returns:
+		(object) A stored convertion result.
+	
+	Remove:
+		
+		Syntax:
+		var deleted = xml2json.remove(id);
+		
+		Arguments:
+		id - (string) Stored convertion id passed on convertFromUrl or convertFromString methods.
+		
+		Returns:
+		(boolean) true or false if delete of storage item was succesfull or not.
+		(null) if id doesn't exist in storage.
 
 Resulting Object Structure
 --------------------------
