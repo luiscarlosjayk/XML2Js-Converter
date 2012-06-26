@@ -1,9 +1,8 @@
 /*
 ---
-name:		 XML2Js
-description:
-	Provides an easy way to read XML files while converting it's content to an Object.
-	This plugin was written thanks to w3schools documentation: http://www.w3schools.com/dom/dom_nodetree.asp
+name: XML2Js
+description: Provides an easy way to read XML files while converting it's content to an Object.
+This plugin was written thanks to w3schools documentation: http://www.w3schools.com/dom/dom_nodetree.asp
 
 license: MIT-style
 
